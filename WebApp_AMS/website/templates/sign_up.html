@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<!-- AUTHOR: ISMAIL MIKOU
+TITLE: AirlineManagementSystem - FINAL PROJECT
+COURSE: CMPSC-363- Intro to Database Systems.
+Professor: J. Xu. -->
+
+{% extends "base.html" %} {% block title %}Sign-Up{% endblock %}
+{% block content %}
+<h1> This is the SIGN_UP page!!</h1>
+
+
+<form method="POST">
+    <h3 align="center"> Sign Up</h3>
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="email"> Email Address</label>
+        <input type="email" class="form-controle" id="email" name="email" placeholder="Enter Email">
+
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="firstName"> First Name</label>
+        <input type="text" class="form-controle" id="firstName" name="firstName" placeholder="Enter First Name">
+        
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="lastName"> Last Name</label>
+        <input type="text" class="form-controle" id="lastName" name="lastName" placeholder="Enter Last Name">
+        
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="dateOfBirth"> Date of Birth </label>
+        <input type="text" class="form-controle" id="dateOfBirth" name="dateOfBirth" placeholder="Enter DOB (YYYY-MM-DD)">
+        
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="password1"> password</label>
+        <input type="password" class="form-controle" id="password1" name="password1" placeholder="Enter Password">
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="password2"> password (CONFIRM)</label>
+        <input type="password" class="form-controle" id="password2" name="password2" placeholder="Confirm Password">
+        
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary"> Submit </button>
+</form>
+
+
+{% endblock %}

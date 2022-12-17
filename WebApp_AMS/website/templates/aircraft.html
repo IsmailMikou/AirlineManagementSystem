@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<!-- AUTHOR: ISMAIL MIKOU
+TITLE: AirlineManagementSystem - FINAL PROJECT
+COURSE: CMPSC-363- Intro to Database Systems.
+Professor: J. Xu. -->
+
+{% extends "base.html" %} {% block title %}Aircrafts{% endblock %}
+
+{% block content %}
+<h1 > AIRCRAFTS</h1>
+
+<body>
+<div style="display: grid; grid-template-columns: 300px">
+    <div id = "quering" style="width: 500px ;margin-top:100px; background-color: ghostwhite; float: right;">
+        <div>
+            <div>
+                <label for="search"> Search Aircraft : </label>
+                <input type="search"  id="search" name="search" placeholder="Aircraft">
+                <button type="login" id="serachButtonID" class="btn btn-primary" style="margin: 0 auto; position: absolute;"> FIND </button>
+            </div>
+            <div>
+                <label for="dropdown1">Choose an option:</label><br>
+                <select name="dropdown" id="dropdown1">
+                  <option value="option0">-</option>
+                  <option value="option1">Aircraft_ID</option>
+                  <option value="option2">Make</option>
+                  <option value="option3">Model</option>
+                  <option value="option4">Date Bought</option>
+                  <option value="option5">Price</option>
+                  <option value="option6">Range</option>
+                  <option value="option7">MinimumRunway</option>
+                  <option value="option8">Service Ceiling</option>
+                  <option value="option9">Speed</option>
+                  <option value="option10">Consumption</option>
+                  <option value="option11">CO2_Emmission</option>
+                  <option value="option12">A-Check Price</option>
+                  <option value="option13">A-Check Hours</option>
+                </select>
+            </div>
+        </div>
+        <hr/>
+    </div>
+
+
+<div style="width: 120%;">
+    <table id="aircrafts" class="table table-striped" style="float: left; max-width: 100%;">
+        <thead class="thead-dark">
+            <tr>
+                <th>Aicraft ID<button onclick="sortTableUp(0)">&#x2191;</button><button onclick="sortTableDown(0)">&#x2193;</button></th>
+                <th>Make<button onclick="sortTableUp(1)">&#x2191;</button><button onclick="sortTableDown(1)">&#x2193;</button></th>
+                <th>Model<button onclick="sortTableUp(2)">&#x2191;</button><button onclick="sortTableDown(2)">&#x2193;</button></th>
+                <th>Date Bought<button onclick="sortTableUp(3)">&#x2191;</button><button onclick="sortTableDown(3)">&#x2193;</button></th>
+                <th>Price<button onclick="sortTableUp(4)">&#x2191;</button><button onclick="sortTableDown(4)">&#x2193;</button></th>
+                <th>Range<button onclick="sortTableUp(5)">&#x2191;</button><button onclick="sortTableDown(5)">&#x2193;</button></th>
+                <th>MinimumRunway<button onclick="sortTableUp(6)">&#x2191;</button><button onclick="sortTableDown(6)">&#x2193;</button></th>
+                <th>Service Ceiling<button onclick="sortTableUp(7)">&#x2191;</button><button onclick="sortTableDown(7)">&#x2193;</button></th>
+                <th>Speed<button onclick="sortTableUp(8)">&#x2191;</button><button onclick="sortTableDown(8)">&#x2193;</button></th>
+                <th>Consumption<button onclick="sortTableUp(9)">&#x2191;</button><button onclick="sortTableDown(9)">&#x2193;</button></th>
+                <th>CO2_Emmission<button onclick="sortTableUp(10)">&#x2191;</button><button onclick="sortTableDown(10)">&#x2193;</button></th>
+                <th>ACheck Price<button onclick="sortTableUp(11)">&#x2191;</button><button onclick="sortTableDown(11)">&#x2193;</button></th>
+                <th>ACheck Hours<button onclick="sortTableUp(12)">&#x2191;</button><button onclick="sortTableDown(12)">&#x2193;</button></th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            {% for a in airplanes %}
+                <tr>
+                    <td>{{ a.aircraft_id}}</td>
+                    <td>{{ a.Make }}</td>
+                    <td>{{ a.Model }}</td>
+                    <td>{{ a.DateBought }}</td>
+                    <td>{{ a.price }}</td>
+                    <td>{{ a.Range }}</td>
+                    <td>{{ a.minRunway }}</td>
+                    <td>{{ a.ServiceCeiling }}</td>
+                    <td>{{ a.speed }}</td>
+                    <td>{{ a.Consumption }}</td>
+                    <td>{{ a.CO2Emission }}</td>
+                    <td>{{ a.ACheckPrice }}</td>
+                    <td>{{ a.ACheckHours }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table> 
+</div>
+</div>
+</body>
+<script>
+    function sortTableUp(col) {
+        var table, rows, switching, i, x, y, shouldSwitch;
+        table = document.getElementById("aircrafts");
+        switching = true;
+        /*Make a loop that will continue until
+        no switching has been done:*/
+        while (switching) {
+            //start by saying: no switching is done:
+            switching = false;
+            rows = table.rows;
+            /*Loop through all table rows (except the
+            first, which contains table headers):*/
+            for (i = 1; i < (rows.length - 1); i++) {
+                //start by saying there should be no switching:
+                shouldSwitch = false;
+                /*Get the two elements you want to compare,
+                one from current row and one from the next:*/
+                x = rows[i].getElementsByTagName("TD")[col];
+                y = rows[i + 1].getElementsByTagName("TD")[col];
+                //check if the two rows should switch place:
+                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                    //if so, mark as a switch and break the loop:
+                    shouldSwitch = true;
+                    break;
+                }
+            }
+            if (shouldSwitch) {
+                /*If a switch has been marked, make the switch
+                and mark that a switch has been done:*/
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+            }
+        }
+    };
+    function sortTableDown(col) {
+        var table, rows, switching, i, x, y, shouldSwitch;
+        table = document.getElementById("aircrafts");
+        switching = true;
+        /*Make a loop that will continue until
+        no switching has been done:*/
+        while (switching) {
+            //start by saying: no switching is done:
+            switching = false;
+            rows = table.rows;
+            /*Loop through all table rows (except the
+            first, which contains table headers):*/
+            for (i = 1; i < (rows.length - 1); i++) {
+                //start by saying there should be no switching:
+                shouldSwitch = false;
+                /*Get the two elements you want to compare,
+                one from current row and one from the next:*/
+                x = rows[i].getElementsByTagName("TD")[col];
+                y = rows[i + 1].getElementsByTagName("TD")[col];
+                //check if the two rows should switch place:
+                if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                    //if so, mark as a switch and break the loop:
+                    shouldSwitch = true;
+                    break;
+                }
+            }
+            if (shouldSwitch) {
+                /*If a switch has been marked, make the switch
+                and mark that a switch has been done:*/
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+            }
+        }
+    };
+    document.getElementById('serachButtonID').addEventListener('click', function() {
+  // Get the user-entered aircraft_id
+var table = document.getElementById('aircrafts');
+var dropdown = document.getElementById('dropdown1');
+var selectedOption = dropdown.options[dropdown.selectedIndex].value;
+
+    var searchColumnIndex;
+if (selectedOption == "option1") {
+  searchColumnIndex = 0;
+} else if (selectedOption == "option2") {
+  searchColumnIndex = 1;
+} else if (selectedOption == "option3") {
+  searchColumnIndex = 2;
+ } else if (selectedOption == "option4") {
+  searchColumnIndex = 3;
+ } else if (selectedOption == "option5") {
+  searchColumnIndex = 4;
+ } else if (selectedOption == "option6") {
+  searchColumnIndex = 4;
+ } else if (selectedOption == "option7") {
+  searchColumnIndex = 4;
+ } else if (selectedOption == "option8") {
+  searchColumnIndex = 4;
+ } else if (selectedOption == "option9") {
+  searchColumnIndex = 4;
+ } else if (selectedOption == "option10") {
+  searchColumnIndex = 4;
+ } else if (selectedOption == "option11") {
+  searchColumnIndex = 4;
+ } else if (selectedOption == "option12") {
+  searchColumnIndex = 4;
+ } else if (selectedOption == "option13") {
+  searchColumnIndex = 4;
+ }
+  var searchTerm = document.getElementById('search').value;
+
+  // Loop through all rows of the table
+  for (var i = 1; i < table.rows.length; i++) {
+    // Get the value of the index cell (which should contain the aircraft_id if 1, make if 2 ...)
+    var id = table.rows[i].cells[searchColumnIndex].innerHTML;
+
+    // If the search term appears at the beginning of the cell value, keep the row visible
+    // Otherwise, hide the row by setting its style.display property to 'none'
+    if (id.indexOf(searchTerm) == 0) {
+      table.rows[i].style.display = '';
+    } else {
+      table.rows[i].style.display = 'none';
+    }
+  }
+});
+</script>
+{% endblock %}
+

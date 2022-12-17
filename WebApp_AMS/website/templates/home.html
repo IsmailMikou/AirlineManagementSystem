@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<!-- AUTHOR: ISMAIL MIKOU
+TITLE: AirlineManagementSystem - FINAL PROJECT
+COURSE: CMPSC-363- Intro to Database Systems.
+Professor: J. Xu. -->
+
+{% extends "base.html" %} {% block title %}Home{% endblock %}
+
+{% block content %}
+<h1> This is the home page!!</h1>
+
+<form method="GET">
+
+
+    <div>
+        <a href="/airplanes">
+            <img src="{{url_for('static', filename='airplaneLogo.png')}}" width="270" height="270" hspace="35" vspace="50" style="border:5px solid #000000"/>
+        </a>
+        <a href="/airports">
+            <img src="{{url_for('static', filename='airportLogo.png')}}" width="270" height="270" hspace="35" vspace="50" style="border:5px solid #000000"/>
+        </a>
+        <a href="/routes">
+        <img src="{{url_for('static', filename='routesLogo.png')}}" width="270" height="270" hspace="35" vspace="50" style="border:5px solid #000000"/>
+        </a>
+    </div>
+    <dev>
+        <a href="/flights">
+            <img src="{{url_for('static', filename='flightsLogo.png')}}" width="270" height="270" hspace="35" vspace="50" style="border:5px solid #000000"/>
+        </a>
+        <a href="/bookings">
+            <img src="{{url_for('static', filename='bookingsLogo.png')}}" width="270" height="270" hspace="35" vspace="50" style="border:5px solid #000000"/>
+        </a>
+        <a href="/payements">
+        <img src="{{url_for('static', filename='payementsLogo.png')}}" width="270" height="270" hspace="35" vspace="50" style="border:5px solid #000000"/>
+        </a>
+    </dev>
+
+</form>
+{% endblock %}
