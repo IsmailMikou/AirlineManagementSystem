@@ -1,0 +1,16 @@
+This Project was Made by Ismail Mikou in Fall 2022.
+Course: Intro to Databases System.
+Professor: John Xu.
+
+Airline Management System to Add/Remove/Query/Search for:
+-Aicrafts.
+-Flights.
+-Routes.
+-Airports.
+-Bookings.
+-Payements.
+
+For the Database part, I used mySQL databases.
+For Backend, I used Javascript
+For front End, I used Python Flask – HTML – CSS.
+
